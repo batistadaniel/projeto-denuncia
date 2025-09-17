@@ -1,5 +1,7 @@
+<?php 
 // Inicia a sessao do PHP para poder usar variaveis de sessao
-<?php session_start(); ?>
+session_start(); 
+?>
 
 <!DOCTYPE html>
 <html>
