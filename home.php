@@ -1,33 +1,47 @@
 <?php
+// Inclui o arquivo que verifica se o usuario esta logado e se a sessao ainda eh valida
 require "verifica_login.php";
 
+// Pega o nome do usuario logado da sessao
 $usuario = $_SESSION['usuario'];
-$tipo = $_SESSION['tipo'];
-$tempoRestante = $_SESSION['expira'] - time(); // em segundos
 
-// define fuso horário de Brasília
+// Pega o tipo do usuario (normal ou admin) da sessao
+$tipo = $_SESSION['tipo'];
+
+// Calcula o tempo restante da sessao em segundos
+$tempoRestante = $_SESSION['expira'] - time();
+
+// Define o fuso horario para Brasilia
 date_default_timezone_set('America/Sao_Paulo');
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Painel</title>
     <script>
+        // Inicializa a variavel tempo com o tempo restante da sessao vindo do PHP
         let tempo = <?php echo $tempoRestante; ?>;
 
+        // Funcao que atualiza o contador da sessao a cada segundo
         function contagemSessao() {
             if (tempo <= 0) {
+                // Se a sessao expirou, redireciona para logout
                 window.location.href = "logout.php";
             } else {
+                // Calcula minutos e segundos restantes
                 let minutos = Math.floor(tempo / 60);
                 let segundos = tempo % 60;
+                // Atualiza o texto na tela
                 document.getElementById("sessao").innerText =
                     minutos + "m " + segundos + "s";
+                // Decrementa o tempo
                 tempo--;
             }
         }
 
+        // Funcao que atualiza o relogio em tempo real
         function relogio() {
             let agora = new Date();
             let h = agora.getHours().toString().padStart(2, "0");
@@ -37,45 +51,50 @@ date_default_timezone_set('America/Sao_Paulo');
             document.getElementById("hora").innerText = d + " " + h + ":" + m + ":" + s;
         }
 
-        setInterval(contagemSessao, 1000); // contador da sessão
-        setInterval(relogio, 1000);        // relógio em tempo real
+        // Atualiza o contador da sessao a cada segundo
+        setInterval(contagemSessao, 1000);
+
+        // Atualiza o relogio a cada segundo
+        setInterval(relogio, 1000);
     </script>
 </head>
 <body onload="relogio(); contagemSessao();">
+
     <header>
+        <!-- Header com nome do usuario, hora atual, tempo de sessao e link para logout -->
         <p>
-            Olá, <?php echo htmlspecialchars($usuario); ?> |
+            Ola, <?php echo htmlspecialchars($usuario); ?> |
             Data/hora atual: <span id="hora"></span> |
-            Sessão expira em: <span id="sessao"></span> |
+            Sessao expira em: <span id="sessao"></span> |
             <a href="logout.php">Sair</a>
         </p>
     </header>
 
-    <h1>Esse é o teste</h1>
-    <!-- Conteúdo comum a todos -->
+    <!-- Conteudo comum a todos os usuarios -->
+    <h1>Esse e o teste</h1>
     <h1>Bem-vindo ao sistema!</h1>
-    <p>Este conteúdo todos os usuários logados podem ver.</p>
+    <p>Este conteudo todos os usuarios logados podem ver.</p>
 
-    <!-- Conteúdo específico para usuários normais -->
+    <!-- Conteudo especifico para usuarios normais -->
     <?php if ($tipo == "normal"): ?>
-        <h2>Área do Usuário Normal</h2>
-        <p>Você tem acesso a funcionalidades básicas.</p>
+        <h2>Area do Usuario Normal</h2>
+        <p>Voce tem acesso a funcionalidades basicas.</p>
         <ul>
             <li>Ver seu perfil</li>
             <li>Alterar senha</li>
-            <li>Consultar dados básicos</li>
+            <li>Consultar dados basicos</li>
         </ul>
     <?php endif; ?>
 
-    <!-- Conteúdo específico para administradores -->
+    <!-- Conteudo especifico para administradores -->
     <?php if ($tipo == "admin"): ?>
-        <h2>Área do Administrador</h2>
-        <p>Você tem acesso a todas as funcionalidades.</p>
+        <h2>Area do Administrador</h2>
+        <p>Voce tem acesso a todas as funcionalidades.</p>
         <ul>
-            <li>Gerenciar usuários</li>
+            <li>Gerenciar usuarios</li>
             <li>Alterar qualquer dado do sistema</li>
-            <li>Visualizar relatórios completos</li>
-            <li>Configurações avançadas</li>
+            <li>Visualizar relatorios completos</li>
+            <li>Configuracoes avancadas</li>
         </ul>
     <?php endif; ?>
 </body>
