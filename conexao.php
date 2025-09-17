@@ -5,9 +5,9 @@ $host = "localhost";
 $user = "root";
 $pass = "";
 $db   = "teste";
-$port = 3309; // porta para conexao mysql
+//$port = 3309; // porta para conexao mysql
 
-$conn = new mysqli($host, $user, $pass, $db, $port); //$port
+$conn = new mysqli($host, $user, $pass, $db); //$port
 
 if ($conn->connect_error) {
     die("Erro na conexão: " . $conn->connect_error);
