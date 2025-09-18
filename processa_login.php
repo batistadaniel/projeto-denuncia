@@ -3,7 +3,7 @@
 session_start();
 
 // Inclui o arquivo de conexao com o banco de dados
-require "conexao.php";
+require "./config/conexao.php";
 
 // pega dados do form
 $usuario = $_POST['usuario'];

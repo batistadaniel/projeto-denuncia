@@ -14,7 +14,7 @@ session_start();
     <h2>Login</h2>
 
     <!-- Formulario de login enviando os dados para auth.php via POST -->
-    <form action="auth.php" method="post">
+    <form action="processa_login.php" method="post">
         Usuario: <input type="text" name="usuario" required><br><br>
         Senha: <input type="password" name="senha" required><br><br>
         <button type="submit">Entrar</button>

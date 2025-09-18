@@ -17,6 +17,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Painel</title>
@@ -58,6 +59,7 @@ date_default_timezone_set('America/Sao_Paulo');
         setInterval(relogio, 1000);
     </script>
 </head>
+
 <body onload="relogio(); contagemSessao();">
 
     <header>
@@ -97,5 +99,25 @@ date_default_timezone_set('America/Sao_Paulo');
             <li>Configuracoes avancadas</li>
         </ul>
     <?php endif; ?>
+
+    <form id="formCadastro" method="post" action="processa_cadastro_ocorrencia.php">
+        <select name="categoria" id="categoria">
+            <option value="">Selecione...</option>
+            <option value="cftv">CFTV</option>
+            <option value="flits">FLITS</option>
+            <option value="moovsec">MOOVSEC</option>
+        </select>
+
+        <select name="subCategoria" id="subCategoria" style="display:none;">
+            <option value="">Selecione...</option>
+        </select>
+
+        <div id="camposSubcategoria"></div>
+
+        <button type="submit" style="margin-top:16px;">Enviar</button>
+    </form>
+
+    <script src="./assets/js/components.js"></script>
+    <script src="./assets/js/scripts.js"></script>
 </body>
 </html>
