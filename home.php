@@ -1,6 +1,6 @@
 <?php
 // Inclui o arquivo que verifica se o usuario esta logado e se a sessao ainda eh valida
-require "verifica_login.php";
+require "php/verifica_login.php";
 
 // Pega o nome do usuario logado da sessao
 $usuario = $_SESSION['usuario'];
@@ -73,12 +73,12 @@ date_default_timezone_set('America/Sao_Paulo');
     </header>
 
     <!-- Conteudo comum a todos os usuarios -->
-    <h1>Esse e o teste</h1>
+    <!-- <h1>Esse e o teste</h1>
     <h1>Bem-vindo ao sistema!</h1>
-    <p>Este conteudo todos os usuarios logados podem ver.</p>
+    <p>Este conteudo todos os usuarios logados podem ver.</p> -->
 
     <!-- Conteudo especifico para usuarios normais -->
-    <?php if ($tipo == "normal"): ?>
+    <!-- <?php if ($tipo == "normal"): ?>
         <h2>Area do Usuario Normal</h2>
         <p>Voce tem acesso a funcionalidades basicas.</p>
         <ul>
@@ -86,10 +86,10 @@ date_default_timezone_set('America/Sao_Paulo');
             <li>Alterar senha</li>
             <li>Consultar dados basicos</li>
         </ul>
-    <?php endif; ?>
+    <?php endif; ?> -->
 
     <!-- Conteudo especifico para administradores -->
-    <?php if ($tipo == "admin"): ?>
+    <!-- <?php if ($tipo == "admin"): ?>
         <h2>Area do Administrador</h2>
         <p>Voce tem acesso a todas as funcionalidades.</p>
         <ul>
@@ -98,9 +98,10 @@ date_default_timezone_set('America/Sao_Paulo');
             <li>Visualizar relatorios completos</li>
             <li>Configuracoes avancadas</li>
         </ul>
-    <?php endif; ?>
+    <?php endif; ?> -->
 
-    <form id="formCadastro" method="post" action="processa_cadastro_ocorrencia.php">
+    <form id="formCadastroOcorrenciaOcorrencia" method="post" action="processa_cadastro_ocorrencia.php">
+        <label for="categoria">Escolha uma categoria:</label>
         <select name="categoria" id="categoria">
             <option value="">Selecione...</option>
             <option value="cftv">CFTV</option>
@@ -108,6 +109,7 @@ date_default_timezone_set('America/Sao_Paulo');
             <option value="moovsec">MOOVSEC</option>
         </select>
 
+        <label for="subCategoria" id="labelSubcategoria" style="display:none;">Escolha uma subcategoria:</label>
         <select name="subCategoria" id="subCategoria" style="display:none;">
             <option value="">Selecione...</option>
         </select>

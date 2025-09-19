@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['erro'] = "Usuario ou senha incorretos!";
 
     // Redireciona de volta para a pagina de login
-    header("Location: login.php");
+    header("Location: home.php");
 
     // Encerra a execucao do script
     exit();

@@ -1,8 +1,9 @@
 // elementos DOM
 const selectCategoria = document.getElementById('categoria');
 const selectSubCategoria = document.getElementById('subCategoria');
+const labelSubcategoria = document.getElementById('labelSubcategoria');
 const camposSubcategoria = document.getElementById('camposSubcategoria');
-const form = document.getElementById('formCadastro') || document.querySelector('form');
+const form = document.getElementById('formCadastroOcorrencia') || document.querySelector('form');
 
 // objetos de campos 
 const categoria = {
@@ -29,7 +30,7 @@ const subCategoria = {
 
 // evento para quando o primeiro select mudar
 selectCategoria.addEventListener('change', () => {
-    
+  
   // limpa area de campos e options da subcategoria
   camposSubcategoria.innerHTML = '';
   selectSubCategoria.innerHTML = '<option value="">Selecione...</option>';

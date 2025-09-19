@@ -3,7 +3,7 @@
 session_start();
 
 // Inclui o arquivo de conexao com o banco de dados
-require "./config/conexao.php";
+require __DIR__ . "/../config/conexao.php";
 
 // pega dados do form
 $usuario = $_POST['usuario'];
@@ -48,10 +48,10 @@ if ($result->num_rows > 0) {
     $_SESSION['inicio']  = time();
 
     // Define o tempo de expiracao da sessao (30 minutos)
-    $_SESSION['expira']  = $_SESSION['inicio'] + (30 * 60);
+    $_SESSION['expira']  = $_SESSION['inicio'] + 30 * 60;
 
     // Redireciona o usuario para a pagina home.php
-    header("Location: home.php");
+    header("Location: ../home.php");
 
     // Encerra a execucao do script para garantir que nada mais sera executado
     exit();
@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
     $_SESSION['erro'] = "Usuario ou senha incorretos!";
 
     // Redireciona de volta para a pagina de login
-    header("Location: login.php");
+    header("Location: ../login.php");
 
     // Encerra a execucao do script
     exit();
